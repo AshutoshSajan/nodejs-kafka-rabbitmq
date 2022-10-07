@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "producer": "node producer.js",
-    "consumer": "node consumer.js",
-    "topic": "node topic.js"
+    "rabbit": "node rabbitmq/index.js",
+    "topic": "node kafka/topic.js",
+    "producer": "node kafka/producer.js",
+    "consumer": "node kafka/consumer.js",
+    "dev": "npm run topic && npm run producer && npm run consumer",
+    "parallel": "echo 'add script to run multiple servers parallelly'"
   },
   "keywords": [],
   "author": "",
