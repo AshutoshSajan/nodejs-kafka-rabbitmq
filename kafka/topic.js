@@ -1,4 +1,4 @@
-const { Kafka } = require('kafkajs');
+const { Kafka, logLevel } = require('kafkajs');
 const brokers = ['localhost:9092'];
 
 async function run() {
@@ -6,6 +6,7 @@ async function run() {
     const kafka = new Kafka({
       clientId: 'my_app',
       brokers,
+      logLevel: logLevel.ERROR,
     });
 
     const admin = kafka.admin();
@@ -13,12 +14,31 @@ async function run() {
     await admin.connect();
     console.log('Connected!');
 
+    const numPartitions = 2;
+    const replicationFactor = 1;
+
     //A-M, N-Z
     await admin.createTopics({
       topics: [
         {
           topic: 'Users',
-          numPartitions: 2,
+          numPartitions,
+          replicationFactor,
+        },
+        {
+          topic: 'topic-a',
+          numPartitions,
+          replicationFactor,
+        },
+        {
+          topic: 'topic-b',
+          numPartitions,
+          replicationFactor,
+        },
+        {
+          topic: 'topic-c',
+          numPartitions,
+          replicationFactor,
         },
       ],
     });

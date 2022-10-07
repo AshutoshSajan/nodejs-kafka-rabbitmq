@@ -5,6 +5,7 @@ const brokers = ['localhost:9092'];
 const kafka = new Kafka({
   clientId: 'my-app',
   brokers,
+  logLevel: logLevel.ERROR,
 });
 
 const producer = kafka.producer();
