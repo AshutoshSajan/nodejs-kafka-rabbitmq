@@ -4,6 +4,11 @@
 
 https://developer.confluent.io/get-started/nodejs/#produce-events
 
+### Kafka GUI Managers
+
+https://github.com/provectus/kafka-ui
+https://github.com/yahoo/CMAK
+
 ### To run rabbitmq in docker container
 
 ```sh
