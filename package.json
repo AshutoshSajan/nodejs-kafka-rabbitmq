@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "rabbit": "node rabbitmq/index.js",
     "topic": "node kafka/topic.js",
     "producer": "node kafka/producer.js",
     "consumer": "node kafka/consumer.js",
-    "dev": "npm run topic && npm run producer && npm run consumer",
-    "parallel": "echo 'add script to run multiple servers parallelly'"
+    "kafka": "npm run topic && npm run producer && npm run consumer",
+    "parallel": "echo 'add script to run multiple servers parallelly'",
+    "rabbit": "node rabbitmq/index.mjs",
+    "rabbitmq_publisher": "node rabbitmq/publisher.js",
+    "rabbitmq_consumer": "node rabbitmq/consumer.js",
+    "rabbitmq_consumer2": "node rabbitmq/consumer2.js",
+    "rabbit-dev": "npm run rabbit"
   },
   "keywords": [],
   "author": "",
