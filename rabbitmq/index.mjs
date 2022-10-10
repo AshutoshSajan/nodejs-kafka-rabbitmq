@@ -1,9 +1,6 @@
-import createTopic from './topic.js';
-import producer from './producer.js';
+import publisher from './publisher.js';
 import consumer from './consumer.js';
 import consumer2 from './consumer2.js';
 
-await createTopic();
-await producer();
-
+await publisher();
 await Promise.all([consumer(), consumer2()]);

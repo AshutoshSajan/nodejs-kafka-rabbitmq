@@ -1,27 +1,26 @@
 const amqplib = require('amqplib');
 
-(async () => {
+const consumer2 = async () => {
   const queue = 'tasks';
   const connection = await amqplib.connect('amqp://localhost');
 
   const channel = await connection.createChannel();
-  await channel.assertQueue(queue);
 
   // Listener
   channel.consume(queue, (msg) => {
     if (msg !== null) {
-      // console.log({ msg });
-      console.log('message received:', msg.content.toString());
+      console.log({
+        // msg,
+        // channel,
+        msgContent: msg.content.toString(),
+        consumer: 'consumer2',
+      });
       channel.ack(msg);
     } else {
       console.log('Consumer cancelled by server');
     }
   });
+};
 
-  // Sender
-  const channel2 = await connection.createChannel();
-
-  setInterval(() => {
-    channel2.sendToQueue(queue, Buffer.from('something to do'));
-  }, 100);
-})();
+// consumer2();
+module.exports = consumer2;

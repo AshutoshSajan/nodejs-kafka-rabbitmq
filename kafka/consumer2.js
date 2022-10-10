@@ -3,7 +3,7 @@ const brokers = ['localhost:9092'];
 const topic = 'test-topic';
 const groupId = 'group1';
 
-async function consumer() {
+async function consumer2() {
   try {
     const kafka = new Kafka({
       clientId: 'my_app',
@@ -78,6 +78,6 @@ async function consumer() {
   }
 }
 
-consumer();
+consumer2();
 
-module.exports = consumer;
+module.exports = consumer2;
