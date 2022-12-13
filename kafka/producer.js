@@ -28,34 +28,43 @@ async function producer() {
     //A-M 0 , N-Z 1
     // let partition = msg[0] < 'N' ? 0 : 1;
 
+    const messages = [];
+
     for (let i = 0; i < 100; i++) {
       const partition = i % 2;
       const message = `message ${i}`;
 
-      const result = await producer.send({
-        topic,
-        messages: [
-          {
-            key: message,
-            value: message,
-            partition, // : partition === 0 ? 1 : 2,
-            // headers: {
-            //   'correlation-id': '2bfb68bb-893a-423b-a7fa-7b568cad5b67',
-            //   'system-id': 'my-system',
-            // },
-            // timestamp: new Date(),
-          },
-        ],
-        // acks: 1,
-        // timeout: 30000,
-        // compression: CompressionTypes.GZIP,
+      messages.push({
+        key: message,
+        value: message,
+        partition,
       });
-
-      console.log(
-        'message send successfully!',
-        JSON.stringify({ result, partition, message }, null, 2)
-      );
     }
+
+    const result = await producer.send({
+      topic,
+      messages,
+      // messages: [
+      //   {
+      //     key: message,
+      //     value: message,
+      //     partition, // : partition === 0 ? 1 : 2,
+      //     // headers: {
+      //     //   'correlation-id': '2bfb68bb-893a-423b-a7fa-7b568cad5b67',
+      //     //   'system-id': 'my-system',
+      //     // },
+      //     // timestamp: new Date(),
+      //   },
+      // ],
+      // acks: 1,
+      // timeout: 30000,
+      // compression: CompressionTypes.GZIP,
+    });
+
+    console.log(
+      'message send successfully!',
+      JSON.stringify({ result, partition, message }, null, 2)
+    );
 
     // const topicMessages = [
     //   {

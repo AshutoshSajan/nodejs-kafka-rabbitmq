@@ -2,10 +2,15 @@ const amqplib = require('amqplib');
 
 const publisher = async () => {
   const queue = 'tasks';
+  const exchange = 'logs';
   const connection = await amqplib.connect('amqp://localhost');
 
   const channel = await connection.createChannel();
-  await channel.assertQueue(queue);
+
+  channel.assertExchange('logs', 'fanout', { durable: false });
+  channel.publish('logs', '', Buffer.from('Hello World!'));
+
+  // await channel.assertQueue(queue);
 
   // // Listener
   // channel.consume(queue, (msg) => {
@@ -21,10 +26,10 @@ const publisher = async () => {
   // Sender
   // const channel2 = await connection.createChannel();
 
-  for (let i = 0; i < 50; i++) {
-    channel.sendToQueue(queue, Buffer.from(`Message ${i}`));
-    console.log(`${i + 1} message published`);
-  }
+  // for (let i = 0; i < 50; i++) {
+  //   channel.sendToQueue(queue, Buffer.from(`Message ${i}`));
+  //   console.log(`${i + 1} message published`);
+  // }
 };
 
 module.exports = publisher;
