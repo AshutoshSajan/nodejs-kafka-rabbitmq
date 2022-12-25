@@ -61,10 +61,10 @@ async function producer() {
       // compression: CompressionTypes.GZIP,
     });
 
-    console.log(
-      'message send successfully!',
-      JSON.stringify({ result, partition, message }, null, 2)
-    );
+    // console.log(
+    //   'message send successfully!',
+    //   JSON.stringify({ result, partition, message }, null, 2)
+    // );
 
     // const topicMessages = [
     //   {
