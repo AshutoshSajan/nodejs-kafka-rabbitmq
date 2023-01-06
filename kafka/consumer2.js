@@ -8,10 +8,11 @@ async function consumer2() {
     const kafka = new Kafka({
       clientId: 'my_app',
       brokers,
-      logLevel: logLevel.ERROR,
+      logLevel: logLevel.DEBUG,
     });
 
     const consumer = kafka.consumer({ groupId });
+    
     console.log('Connecting.....');
     await consumer.connect();
     console.log('Connected!');

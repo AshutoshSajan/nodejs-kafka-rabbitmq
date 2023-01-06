@@ -8,7 +8,7 @@ async function producer() {
     const kafka = new Kafka({
       clientId: 'my_app',
       brokers,
-      logLevel: logLevel.ERROR,
+      logLevel: logLevel.DEBUG,
       // retry: {
       //   initialRetryTime: 100,
       //   retries: 8,

@@ -7,10 +7,11 @@ const createTopic = async () => {
     const kafka = new Kafka({
       clientId: 'my_app',
       brokers,
-      logLevel: logLevel.ERROR,
+      logLevel: logLevel.DEBUG,
     });
 
     const admin = kafka.admin();
+    
     console.log('Connecting.....');
     await admin.connect();
     console.log('Connected!');
@@ -25,21 +26,21 @@ const createTopic = async () => {
           numPartitions,
           replicationFactor,
         },
-        // {
-        //   topic: 'topic-a',
-        //   numPartitions,
-        //   replicationFactor,
-        // },
-        // {
-        //   topic: 'topic-b',
-        //   numPartitions,
-        //   replicationFactor,
-        // },
-        // {
-        //   topic: 'topic-c',
-        //   numPartitions,
-        //   replicationFactor,
-        // },
+        {
+          topic: 'topic-a',
+          numPartitions,
+          replicationFactor,
+        },
+        {
+          topic: 'topic-b',
+          numPartitions,
+          replicationFactor,
+        },
+        {
+          topic: 'topic-c',
+          numPartitions,
+          replicationFactor,
+        },
       ],
     });
 

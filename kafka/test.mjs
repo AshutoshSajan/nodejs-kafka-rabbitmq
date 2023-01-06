@@ -6,7 +6,7 @@ const topic = 'test';
 const kafka = new Kafka({
   clientId: 'my-app',
   brokers,
-  logLevel: logLevel.ERROR,
+  logLevel: logLevel.DEBUG,
 });
 
 const producer = kafka.producer();
