@@ -6,7 +6,8 @@
   "scripts": {
     "topic": "node kafka/topic.js",
     "producer": "node kafka/producer.js",
-    "consumer": "node kafka/consumer.js",
+    "consumer1": "node kafka/consumer1.js",
+    "consumer2": "node kafka/consumer2.js",
     "kafka": "npm run topic && npm run producer && npm run consumer",
     "parallel": "echo 'add script to run multiple servers parallelly'",
     "rabbit": "node rabbitmq/index.mjs",

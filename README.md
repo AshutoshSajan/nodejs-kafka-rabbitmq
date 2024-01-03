@@ -44,4 +44,4 @@ docker compose up -d
    - `node kafka/producer.js "some message to publish"`
 
 3. Create a consumer and consume the messages
-   - `node kafka/consumer.js`
+   - `node kafka/consumer1.js`
