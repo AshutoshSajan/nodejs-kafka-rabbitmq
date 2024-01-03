@@ -1,18 +1,18 @@
 const { Kafka, logLevel } = require('kafkajs');
 const brokers = ['localhost:9092'];
-const topic = 'test-topic';
+const topic = 'topic-a'; // 'test-topic';
 const groupId = 'group1';
 
 async function consumer() {
   try {
     const kafka = new Kafka({
-      clientId: 'my_app',
+      clientId: 'consumer1',
       brokers,
       logLevel: logLevel.DEBUG,
     });
 
     const consumer = kafka.consumer({ groupId });
-    
+
     console.log('Connecting.....');
     await consumer.connect();
     console.log('Connected!');
@@ -28,11 +28,14 @@ async function consumer() {
         console.log({
           topic,
           partition,
+          offset: message.offset,
           messageText: message.value.toString(),
           // message,
           // heartbeat,
           // pause,
         });
+
+        // await heartbeat();
       },
 
       // ==========================================

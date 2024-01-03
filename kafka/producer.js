@@ -1,12 +1,24 @@
 const { Kafka, logLevel, CompressionTypes } = require('kafkajs');
 const brokers = ['localhost:9092'];
-const topic = 'test-topic';
+const readline = require('readline');
+const topics = ['topic-a']; // ['test-topic'];
+
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+// });
+
+// rl.question('> Enter your message ', (messages) => {
+//   console.log(`Hello, ${answer}!`);
+//   rl.close();
+// });
+
 // const msg = process.argv[2];
 
 async function producer() {
   try {
     const kafka = new Kafka({
-      clientId: 'my_app',
+      clientId: 'producer',
       brokers,
       logLevel: logLevel.DEBUG,
       // retry: {
@@ -25,6 +37,33 @@ async function producer() {
     await producer.connect();
     console.log('Connected!');
 
+    // const admin = kafka.admin();
+
+    // // remember to disconnect when you are done
+    // await admin.connect();
+
+    // const clusterInfo = await admin.describeCluster();
+
+    // const replicationFactor = clusterInfo.brokers.length;
+
+    // console.log(JSON.stringify({ clusterInfo, replicationFactor }, null, 2));
+
+    // const topicConfig = topics.map((topic) => ({
+    //   topic,
+    //   numPartitions: 1, // default: -1 (uses broker `num.partitions` configuration)
+    //   replicationFactor, // default: -1 (uses broker `default.replication.factor` configuration)
+    //   // replicaAssignment: <Array>,  // Example: [{ partition: 0, replicas: [0,1,2] }] - default: []
+    //   // configEntries: <Array>       // Example: [{ name: 'cleanup.policy', value: 'compact' }] - default: []
+    // }));
+
+    // // kafka doc https://kafka.js.org/docs/admin#a-name-create-topics-a-create-topics
+    // await admin.createTopics({
+    //   topics: topicConfig,
+    //   waitForLeaders: true,
+    // });
+
+    // await admin.disconnect();
+
     //A-M 0 , N-Z 1
     // let partition = msg[0] < 'N' ? 0 : 1;
 
@@ -42,7 +81,7 @@ async function producer() {
     }
 
     const result = await producer.send({
-      topic,
+      topic: topics[0],
       messages,
       // messages: [
       //   {

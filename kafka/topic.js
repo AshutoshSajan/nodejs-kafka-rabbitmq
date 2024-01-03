@@ -11,7 +11,7 @@ const createTopic = async () => {
     });
 
     const admin = kafka.admin();
-    
+
     console.log('Connecting.....');
     await admin.connect();
     console.log('Connected!');
@@ -31,16 +31,16 @@ const createTopic = async () => {
           numPartitions,
           replicationFactor,
         },
-        {
-          topic: 'topic-b',
-          numPartitions,
-          replicationFactor,
-        },
-        {
-          topic: 'topic-c',
-          numPartitions,
-          replicationFactor,
-        },
+        // {
+        //   topic: 'topic-b',
+        //   numPartitions,
+        //   replicationFactor,
+        // },
+        // {
+        //   topic: 'topic-c',
+        //   numPartitions,
+        //   replicationFactor,
+        // },
       ],
     });
 
